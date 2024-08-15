@@ -1,13 +1,22 @@
 # 2024-IA22-2TRI
 
-# Iniciando um Projeto Node.js com TypeScript
+# Você vai aprender a criar um servidor Node.js com TypeScript que realiza operações de banco de dados e possui uma interface web simples para interagir com os dados.
 
 
-## Passo 1: Crie um Diretório para o Projeto
 
-1- Abra o Visual Studio Code (VS Code).
+## Passo 1: Criar um Repositório no GitHub e Iniciar Codespaces
 
-2- Crie um novo diretório para o seu projeto. Você pode fazer isso clicando com o botão direito no Explorer do VS Code e selecionando "New Folder". Dê um nome ao diretório, por exemplo, my-node-ts-project.
+1- Acesse o GitHub e faça login.
+Clique no botão "New" no canto superior direito para criar um novo repositório.
+Nomeie o repositório como 2024-IA24.
+Marque a opção "Public".
+Marque a opção "Add a README file".
+Clique em "Create repository".
+
+
+//
+
+2- Crie um novo repositorio para o seu projeto. Você pode fazer isso clicando com o botão direito no Explorer do VS Code e selecionando "New Folder". Dê um nome ao repositorio, por exemplo, my-node-ts-project.
 
 3- Abra o diretório criado no VS Code. Clique em "File" > "Open Folder" e selecione o diretório que você criou.
 
@@ -176,7 +185,7 @@ export async function connect() {
 
 1- No arquivo src/app.ts, adicione as seguintes importações e código:
 
-````bash
+````typescript
 // Importando o módulo connect do arquivo database.ts
 import { connect } from './database';
 
@@ -237,4 +246,4 @@ app.get('/users', async (req, res) => {
 
 # Finalização
 
-1- Você configurou com sucesso um projeto Node.js com TypeScript, Express, CORS e SQLite
+1- Você configurou com sucesso um projeto Node.js com TypeScript, Express, CORS e SQLite 

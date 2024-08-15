@@ -7,6 +7,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(express.static(__dirname + '/../public'))
 
 app.get('/', (req, res) => {
   res.send('Hello World');
@@ -22,6 +23,33 @@ app.post('/users', async (req, res) => {
   res.json(user);
 });
 
+app.put('/users/:id', async (req, res) => {
+  try {
+    const db = await connect();
+    const { name, email } = req.body;
+    const { id } = req.params;
+
+    await db.run('UPDATE users SET name = ?, email = ? WHERE id = ?', [name, email, id]);
+    const user = await db.get('SELECT * FROM users WHERE id = ?', [id]);
+
+    res.json(user);
+  } catch (error) {
+    res.status(500).json({ error: 'Erro ao atualizar usuário' });
+  }
+});
+
+app.delete('/users/:id', async (req, res) => {
+  try {
+    const db = await connect();
+    const { id } = req.params;
+
+    await db.run('DELETE FROM users WHERE id = ?', [id]);
+
+    res.json({ message: 'Usuário deletado' });
+  } catch (error) {
+    res.status(500).json({ error: 'Erro ao deletar usuário' });
+  }
+});
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
