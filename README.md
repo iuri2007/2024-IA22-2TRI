@@ -1,3 +1,40 @@
+
+# Tutorial Passo a Passo: Configurando um Projeto Node.js com TypeScript no Codespaces
+### Objetivo: Você vai aprender a criar um servidor Node.js com TypeScript que realiza operações de banco de dados e possui uma interface web simples para interagir com os dados.
+
+### Passo 1: Criar um Repositório no GitHub e Iniciar Codespaces
+
+1- Crie um repositório no GitHub:
+Acesse o GitHub e faça login.
+Clique no botão "New" no canto superior direito para criar um novo repositório.
+
+2- Nomeiei o repositório como Projetin.
+
+3- Marque a opção "Public".
+
+4- Marque a opção "Add a README file".
+
+5- Clique em "Create repository". 
+
+## passo 2: Inicie o Codespaces:
+
+No seu repositório recém-criado, clique no botão "Code".
+Clique em "Codespaces" e depois em "Create Codespace on main".
+Espere o ambiente Codespaces carregar.
+
+## Passo 3: Configurar o Ambiente de Desenvolvimento
+
+Iniciar o projeto Node.js:
+No terminal que se abriu automaticamente no Codespaces, digite o seguinte comando para criar o projeto:
+
+````bash
+npm init -y
+````
+
+Esse comando cria um arquivo package.json com as configurações básicas do projeto.
+Instalar dependências do projeto:
+Ainda no terminal, instale as dependências necessárias:
+
 ## Passo 4: Instale as Dependências
 
 
