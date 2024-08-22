@@ -1,8 +1,8 @@
 
-# Tutorial Passo a Passo: Configurando um Projeto Node.js com TypeScript no Codespaces
-### Objetivo: Você vai aprender a criar um servidor Node.js com TypeScript que realiza operações de banco de dados e possui uma interface web simples para interagir com os dados.
+# Tutorial Super Detalhado: Configurando um Projeto Node.js com TypeScript no Codespaces
+### Este tutorial vai te guiar, passo a passo, para criar um servidor web usando Node.js e TypeScript. Você vai aprender a configurar um ambiente de desenvolvimento, criar um servidor simples, conectar um banco de dados SQLite, e criar uma interface web para interagir com os dados.
 
-### Passo 1: Criar um Repositório no GitHub e Iniciar Codespaces
+### Passo 1:  Criar um Repositório no GitHub
 
 1- Crie um repositório no GitHub:
 Acesse o GitHub e faça login.
@@ -16,84 +16,100 @@ Clique no botão "New" no canto superior direito para criar um novo repositório
 
 5- Clique em "Create repository". 
 
-## passo 2: Inicie o Codespaces:
+## passo 2: Iniciar Codespaces no GitHub
 
-No seu repositório recém-criado, clique no botão "Code".
-Clique em "Codespaces" e depois em "Create Codespace on main".
-Espere o ambiente Codespaces carregar.
+1-Abrir o Codespaces:
+
+- Dentro do seu repositório recém-criado, você verá um botão chamado "Code". Clique nele.
+
+- Selecione a aba "Codespaces" e clique em "Create Codespace on main".
+
+- Aguarde alguns minutos enquanto o Codespaces é configurado. Ele vai abrir uma nova janela que simula um ambiente de desenvolvimento completo na nuvem.
 
 ## Passo 3: Configurar o Ambiente de Desenvolvimento
 
-Iniciar o projeto Node.js:
-No terminal que se abriu automaticamente no Codespaces, digite o seguinte comando para criar o projeto:
+1- Iniciar o projeto Node.js:
+
+- Dentro do Codespaces, na parte inferior da tela, você verá um terminal. Esse terminal permite que você digite comandos que serão executados no seu ambiente.
+### No terminal, digite o seguinte comando para criar o projeto básico do Node.js:
 
 ````bash
 npm init -y
 ````
+- Esse comando cria um arquivo chamado package.json que armazena as informações básicas do seu projeto.
 
-Esse comando cria um arquivo package.json com as configurações básicas do projeto.
-Instalar dependências do projeto:
-Ainda no terminal, instale as dependências necessárias:
+## Passo 4: Instalar as Dependências Necessárias
 
-## Passo 4: Instale as Dependências
+1- Instalar o Express, CORS e SQLite3:
 
+- Esses pacotes são fundamentais para o seu projeto. O Express permite que você crie um servidor web, o CORS permite que seu servidor lide com requisições de outros domínios, e o SQLite3 é o banco de dados que você vai usar.
 
-1- Ainda no terminal, instale o Express, CORS, e SQLite3 com o seguinte comando:
-
+- Para instalar esses pacotes, digite o seguinte comando no terminal: 
 
 ````bash
 npm install express cors sqlite3
 ````
+- Aguarde alguns segundos enquanto as bibliotecas são baixadas e instaladas.
 
 
-## Passo 5: Instale as Dependências de Desenvolvimento
+## Passo 5: Instalar Ferramentas de Desenvolvimento
 
 
-1- Instale as dependências necessárias para o desenvolvimento com TypeScript:
+1- Instalar o TypeScript e outras ferramentas:
 
+- O TypeScript é uma linguagem que melhora o JavaScript, oferecendo tipos que ajudam a prevenir erros no código. Vamos também instalar o Nodemon, que reinicia automaticamente o servidor toda vez que você faz uma mudança, e outras ferramentas que ajudam no desenvolvimento.
+
+- Digite o seguinte comando no terminal:
 
 ````bash
 npm install --save-dev typescript nodemon ts-node @types/express @types/cors @types/sqlite3
 ````
 
+- Esse comando instala as ferramentas e bibliotecas necessárias para trabalhar com TypeScript em seu projeto Node.js. 
 
-## Passo 6: Inicialize o TypeScript
+## Passo 6: Inicializar o TypeScript
 
+1- Configurar o TypeScript:
 
-1- Configure o TypeScript no projeto:
-
+- Agora, vamos configurar o TypeScript no seu projeto. Digite o seguinte comando no terminal:
 
 ````bash
 npx tsc --init
 ````
 
+- Esse comando cria um arquivo chamado tsconfig.json, que define as configurações do TypeScript para o seu projeto.
 
-## Passo 7: Crie a Estrutura de Diretórios e Arquivos
+## Passo 7: Criar a Estrutura de Diretórios e Arquivos
 
+1- Criar a pasta src e o arquivo app.ts:
 
-1- Crie o diretório src e o arquivo src/app.ts:
+- O src será o diretório onde colocaremos nosso código. Dentro dele, vamos criar o arquivo app.ts, que será o arquivo principal do nosso servidor.
 
+- Para fazer isso, digite os seguintes comandos no terminal, um de cada vez: 
 
 ````bash
 mkdir src
+````
+
+````bash
 touch src/app.ts
 ````
 
+- mkdir src cria a pasta src, e touch src/app.ts cria um arquivo chamado app.ts dentro dessa pasta.
 
-## Passo 8: Configure o tsconfig.json
+## Passo 8: Configurar o tsconfig.json
 
+1- Configurar o tsconfig.json
 
-### Abra o arquivo tsconfig.json e faça as seguintes modificações:
+- Vamos ajustar algumas configurações no arquivo tsconfig.json para que o TypeScript saiba onde colocar os arquivos compilados.
 
+- No Codespaces, à esquerda, você verá a lista de arquivos do seu projeto. Clique em tsconfig.json para abri-lo.
 
-1- Mude a linha "outDir": "./", para "outDir": "./dist",.
+- Encontre a linha que diz "outDir": "./" e mude para "outDir": "./dist".
 
+- Logo abaixo, adicione a linha "rootDir": "./src".
 
-2- Adicione a linha "rootDir": "./src",.
-
-
-# O arquivo tsconfig.json deve ficar assim:
-
+### O arquivo deve ficar assim:
 
 ````bash
 {
@@ -109,270 +125,281 @@ touch src/app.ts
   }
 }
 ````
-## Passo 9: Configure o package.json
 
+- Essas configurações garantem que os arquivos TypeScript sejam compilados para a pasta dist.
 
-1- Abra o arquivo package.json e adicione o seguinte script na seção "scripts":
+## Passo 9:  Configurar o package.json
 
+1- Adicionar scripts ao package.json:
+
+- Vamos adicionar um script que facilita o processo de iniciar o servidor.
+
+- No Codespaces, clique no arquivo package.json para abri-lo.
+
+- Dentro da seção "scripts", adicione a seguinte linha:
 
 ````bash
 "scripts": {
   "dev": "nodemon src/app.ts"
 }
 ````
+- Esse script permite que você inicie o servidor simplesmente digitando npm run dev no terminal.
 
+## Passo 10: Criar o Arquivo Inicial do Servidor
 
-## Passo 10: Crie o Arquivo Inicial do Servidor:
+1- Escrever o código do servidor:
 
+- Vamos agora adicionar o código que configura o servidor e define uma rota simples.
 
-1- No arquivo src/app.ts, adicione o seguinte código:
-
+- Clique no arquivo src/app.ts para abri-lo e cole o seguinte código:
 
 ````bash
-// Importando os módulos necessários
 import express from 'express';
 import cors from 'cors';
 
+const port = 3333;  // Define a porta em que o servidor vai rodar
+const app = express();  // Cria uma nova aplicação Express
 
-// Definindo a porta em que o servidor irá rodar
-const port = 3333;
+app.use(cors());  // Permite que seu servidor aceite requisições de outros domínios
+app.use(express.json());  // Permite que seu servidor processe dados em formato JSON
 
-
-// Criando uma aplicação Express
-const app = express();
-
-
-// Usando o middleware CORS para permitir requisições de diferentes origens
-app.use(cors());
-
-
-// Usando o middleware para fazer o parse do corpo das requisições em JSON
-app.use(express.json());
-
-
-// Definindo uma rota GET na raiz do servidor que retorna "Hello World"
+// Define uma rota que responde "Hello World" quando acessada
 app.get('/', (req, res) => {
   res.send('Hello World');
 });
 
-
-// Iniciando o servidor na porta especificada
+// Inicia o servidor na porta definida
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
 ````
-## Passo 11: Inicialize o Servidor
 
+- Esse código cria um servidor que, ao ser acessado, responde com a mensagem "Hello World".
 
-1- No terminal, execute o servidor com o comando:
+## Passo 11: Iniciar o Servidor
 
+1- Rodar o servidor:
+
+- Para verificar se o servidor está funcionando, volte ao terminal e digite:
 
 ````bash
 npm run dev
 ````
 
+- Se tudo estiver correto, você verá a mensagem Server running on port 3333 no terminal, indicando que o servidor está rodando.
 
-# Se tudo estiver correto, você verá a mensagem Server running on port 3333 no terminal.
+## Passo 12: Testar o Servidor
 
+1- Acessar o servidor no navegador:
 
-## Passo 12: Teste o Servidor
+- No Codespaces, você verá uma barra na parte superior com uma aba chamada "Ports". Clique nela.
 
+- Você verá a porta 3333 listada. Clique no link ao lado dessa porta.
 
-1- Abra seu navegador e acesse http://localhost:3333. Você deverá ver a mensagem Hello World
+- Uma nova aba será aberta no seu navegador, e você deverá ver a mensagem "Hello World".
 
+## Passo 13: Configurar o Banco de Dados
 
-## Passo 13: Configure o Banco de Dados
+1- Criar o arquivo de conexão com o banco de dados:
 
+- Vamos agora configurar o SQLite, que será o banco de dados usado no projeto.
 
-1- Crie um arquivo src/database.ts e adicione o seguinte código:
-
+- No Codespaces, crie um novo arquivo chamado src/database.ts usando o comando:
 
 ````bash
+touch src/database.ts
+````
+
+- Abra o arquivo src/database.ts e adicione o seguinte código:
+
+````typescript
 import { open, Database } from 'sqlite';
 import sqlite3 from 'sqlite3';
 
-
-// Variável para armazenar a instância do banco de dados
 let instance: Database | null = null;
 
-
-// Função para conectar ao banco de dados
 export async function connect() {
-  // Retorna a instância do banco de dados se já estiver conectada
-  if (instance) return instance;
+  if (instance) return instance;  // Retorna a instância existente do banco de dados, se já houver uma
 
-
-  // Abre uma conexão com o banco de dados SQLite
   const db = await open({
-    filename: './src/database.sqlite',
-    driver: sqlite3.Database
+    filename: './src/database.sqlite',  // Define o caminho do arquivo do banco de dados
+    driver: sqlite3.Database  // Define o driver que será usado pelo SQLite
   });
- 
-  // Cria a tabela 'users' se ela não existir
+
+  // Cria a tabela "users" se ela ainda não existir
   await db.exec(`
     CREATE TABLE IF NOT EXISTS users (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
-      name TEXT,
-      email TEXT
+      name TEXT NOT NULL,
+      email TEXT NOT NULL UNIQUE
     )
   `);
 
-
-  // Armazena a instância do banco de dados
-  instance = db;
-  return db;
+  instance = db;  // Armazena a instância do banco de dados para reutilização
+  return db;  // Retorna a instância do banco de dados
 }
 ````
+- Esse código cria uma conexão com o banco de dados e cria uma tabela users para armazenar informações de usuários.
 
+## Passo 14: Criar Rotas CRUD (Create, Read, Update, Delete)
 
-## Passo 14: Adicione o Banco de Dados ao Servidor
+1- Adicionar rotas para o CRUD:
 
+- Vamos agora adicionar rotas que permitem criar, ler, atualizar e deletar usuários no banco de dados.
 
-1- No arquivo src/app.ts, adicione as seguintes importações e código:
-
+- Abra o arquivo src/app.ts e substitua o código pelo seguinte:
 
 ````typescript
-// Importando o módulo connect do arquivo database.ts
+import express from 'express';
+import cors from 'cors';
 import { connect } from './database';
 
+const port = 3333;
+const app = express();
 
-// Definindo uma rota POST para adicionar um usuário ao banco de dados
+app.use(cors());
+app.use(express.json());
+
+// Rota para criar um novo usuário
 app.post('/users', async (req, res) => {
-  // Conectando ao banco de dados
-  const db = await connect();
-  // Extraindo os dados do corpo da requisição
   const { name, email } = req.body;
-
-
-  // Inserindo um novo usuário no banco de dados
-  const result = await db.run('INSERT INTO users (name, email) VALUES (?, ?)', [name, email]);
-  // Obtendo o usuário inserido
-  const user = await db.get('SELECT * FROM users WHERE id = ?', [result.lastID]);
-
-
-  // Retornando o usuário inserido como resposta
-  res.json(user);
-});
-````
-
-
-## Passo 15: Teste a Inserção de Dados
-
-
-1- Use o Postman para fazer uma requisição POST para http://localhost:3333/users com o seguinte corpo:
-
-
-````bash
-{
-  "name": "John Doe",
-  "email": "john@example.com"
-}
-````
-
-
-2- Se tudo estiver correto, você verá a resposta com o usuário inserido:
-
-
-````bash
-{
-  "id": 1,
-  "name": "John Doe",
-  "email": "john@example.com"
-}
-````
-
-
-## Passo 16: Liste os Usuários
-
-
-1- Adicione a rota /users no servidor:
-
-
-````bash
-// Definindo uma rota GET para listar todos os usuários
-app.get('/users', async (req, res) => {
-  // Conectando ao banco de dados
   const db = await connect();
-  // Obtendo todos os usuários do banco de dados
-  const users = await db.all('SELECT * FROM users');
 
+  try {
+    const result = await db.run(
+      `INSERT INTO users (name, email) VALUES (?, ?)`,
+      [name, email]
+    );
 
-  // Retornando a lista de usuários como resposta
+    res.status(201).json({ id: result.lastID, name, email });
+  } catch (error) {
+    res.status(500).json({ error: 'Erro ao criar usuário' });
+  }
+});
+
+// Rota para listar todos os usuários
+app.get('/users', async (req, res) => {
+  const db = await connect();
+  const users = await db.all(`SELECT * FROM users`);
   res.json(users);
 });
-````
-2- Editando um usuário Adicione a rota /users/:id ao servidor. adicione ao app.ts copiar código
 
-````bash
+// Rota para atualizar um usuário existente
 app.put('/users/:id', async (req, res) => {
-  const db = await connect();
+  const { id } = req.params;
   const { name, email } = req.body;
-  const { id } = req.params;
-
-  await db.run('UPDATE users SET name = ?, email = ? WHERE id = ?', [name, email, id]);
-  const user = await db.get('SELECT * FROM users WHERE id = ?', [id]);
-
-  res.json(user);
-});
-````
-3- Deletando um usuário Adicione a rota /users/:id ao servidor. adicione ao app.ts copiar código
-
-````bash
-app.delete('/users/:id', async (req, res) => {
   const db = await connect();
+
+  try {
+    await db.run(
+      `UPDATE users SET name = ?, email = ? WHERE id = ?`,
+      [name, email, id]
+    );
+    res.status(200).json({ id, name, email });
+  } catch (error) {
+    res.status(500).json({ error: 'Erro ao atualizar usuário' });
+  }
+});
+
+// Rota para deletar um usuário
+app.delete('/users/:id', async (req, res) => {
   const { id } = req.params;
+  const db = await connect();
 
-  await db.run('DELETE FROM users WHERE id = ?', [id]);
+  try {
+    await db.run(`DELETE FROM users WHERE id = ?`, [id]);
+    res.status(200).json({ message: 'Usuário deletado com sucesso' });
+  } catch (error) {
+    res.status(500).json({ error: 'Erro ao deletar usuário' });
+  }
+});
 
-  res.json({ message: 'User deleted' });
+// Inicia o servidor
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
 });
 ````
-## Passo 17: Criar a Pasta Public e Adicionar Arquivos
+- Esse código adiciona as rotas que permitem criar (POST /users), listar (GET /users), atualizar (PUT /users/:id), e deletar (DELETE /users/:id) usuários.
 
-1- Criar a Pasta Public e dentro dela um arquivo  **index.html**
+## Passo 15: Testar as Rotas do CRUD
 
-# Dentro de ìndex.html adicione: 
+1- Testar as rotas com o Postman ou Insomnia:
+
+- Para testar as rotas, você pode usar ferramentas como Postman ou Insomnia. Estas ferramentas permitem que você envie requisições HTTP e veja as respostas do servidor.
+
+- A URL base será http://localhost:3333/users e você pode testar as seguintes rotas:
+
+- POST /users com um JSON no corpo da requisição, por exemplo: { "name": "João", "email": "joao@email.com" }.
+
+- GET /users para listar todos os usuários.
+
+- PUT /users/:id para atualizar um usuário existente.
+
+- DELETE /users/:id para deletar um usuário.
+
+## Passo 16: Criar a Interface Web
+
+1- Criar o arquivo HTML para a interface web:
+
+- Agora, vamos criar uma interface web simples para interagir com as rotas do servidor.
+
+- Crie um arquivo chamado index.html na raiz do projeto:
+
+````html
+touch index.html
+````
+
+- Abra o arquivo index.html e adicione o seguinte código:
 
 ````html
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Gerenciamento de Usuários</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    table, th, td {
+      border: 1px solid black;
+    }
+    th, td {
+      padding: 8px;
+      text-align: left;
+    }
+  </style>
 </head>
-
 <body>
-  <form>
-    <input type="text" name="name" placeholder="Nome">
-    <input type="email" name="email" placeholder="Email">
-    <button type="submit">Cadastrar</button>
+  <h1>Gerenciamento de Usuários</h1>
+  <form id="userForm">
+    <input type="text" id="name" placeholder="Nome" required>
+    <input type="email" id="email" placeholder="Email" required>
+    <button type="submit">Adicionar Usuário</button>
   </form>
-
+  <h2>Lista de Usuários</h2>
   <table>
     <thead>
       <tr>
-        <th>Id</th>
-        <th>Name</th>
+        <th>ID</th>
+        <th>Nome</th>
         <th>Email</th>
         <th>Ações</th>
       </tr>
     </thead>
-    <tbody>
-      <!--  -->
-    </tbody>
+    <tbody id="userList"></tbody>
   </table>
-
   <script>
-    // 
-    const form = document.querySelector('form')
+    const form = document.getElementById('userForm')
+    const tbody = document.getElementById('userList')
 
-    form.addEventListener('submit', async (event) => {
-      event.preventDefault()
+    form.onsubmit = async (e) => {
+      e.preventDefault()
 
-      const name = form.name.value
-      const email = form.email.value
+      const name = document.getElementById('name').value
+      const email = document.getElementById('email').value
 
       await fetch('/users', {
         method: 'POST',
@@ -380,28 +407,23 @@ app.delete('/users/:id', async (req, res) => {
         body: JSON.stringify({ name, email })
       })
 
-      form.reset()
       fetchData()
-    })
-
-    // 
-    const tbody = document.querySelector('tbody')
+    }
 
     async function fetchData() {
-      const resp = await fetch('/users')
-      const data = await resp.json()
-
+      const response = await fetch('/users')
+      const users = await response.json()
       tbody.innerHTML = ''
 
-      data.forEach(user => {
+      users.forEach(user => {
         const tr = document.createElement('tr')
         tr.innerHTML = `
           <td>${user.id}</td>
           <td>${user.name}</td>
           <td>${user.email}</td>
           <td>
-            <button class="excluir">excluir</button>
-            <button class="editar">editar</button>
+            <button class="excluir">Excluir</button>
+            <button class="editar">Editar</button>
           </td>
         `
 
@@ -433,10 +455,13 @@ app.delete('/users/:id', async (req, res) => {
     fetchData()
   </script>
 </body>
-
 </html>
 ````
 
-# Finalizou :)
+- Esse código cria um formulário para adicionar novos usuários e uma tabela para exibir, editar e excluir usuários existentes.
 
-# Parabéns!. Você configurou com sucesso um projeto Node.js com TypeScript, Express, CORS e SQLite
+## Conclusão
+
+### Parabéns!
+
+- Você configurou com sucesso um projeto Node.js com TypeScript, Express, CORS e SQLite. Agora, você tem um servidor funcional que pode ser acessado via interface web para gerenciar uma lista de usuários.
